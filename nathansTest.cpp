@@ -202,7 +202,7 @@ static void mainLoop(void)
 	cout<<"Base_health:"<<'\n'<<base_health<<"\n";
         cout << "Printing enemy position!" << '\n';
 
-    GLfloat UpwardsScrollVelocity = -10.0;
+    //GLfloat UpwardsScrollVelocity = -10.0;
        cout << "X: " << enemy1.x << " Y: " << enemy1.y << " Z: " << enemy1.z << endl;
         //Calculate the distance between the two objects, if both visible
             if(object[0].visible == 1 && object[1].visible == 1){
@@ -211,8 +211,9 @@ static void mainLoop(void)
 			if(arrived)
 				base_health--;
             if(base_health==0){
-                glTranslatef(0.0, -100, UpwardsScrollVelocity);
+               // glTranslatef(0.0, -100, UpwardsScrollVelocity);
                 glutStrokeString(GLUT_STROKE_ROMAN, "Game Over");
+                glTranslatef(50.0f,50.0f,0);
             }
                 }
             }
