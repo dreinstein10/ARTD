@@ -102,15 +102,7 @@ static void updateTimer (struct glut_timer_t *t)
   t->last_time = t->current_time;
   t->current_time = glutGet (GLUT_ELAPSED_TIME) * 0.001f;
 }
-void displayText( float x, float y, int r, int g, int b, const char *string ) {
-	int j = strlen( string );
 
-	glColor3f( r, g, b );
-	glRasterPos2f( x, y );
-	for( int i = 0; i < j; i++ ) {
-		glutBitmapCharacter( GLUT_BITMAP_TIMES_ROMAN_24, string[i] );
-	}
-}
 // methods for money
 static int buy(int money)
 {
@@ -210,6 +202,7 @@ static void mainLoop(void)
 	cout<<"Base_health:"<<'\n'<<base_health<<"\n";
         cout << "Printing enemy position!" << '\n';
 
+    GLfloat UpwardsScrollVelocity = -10.0;
        cout << "X: " << enemy1.x << " Y: " << enemy1.y << " Z: " << enemy1.z << endl;
         //Calculate the distance between the two objects, if both visible
             if(object[0].visible == 1 && object[1].visible == 1){
@@ -217,6 +210,10 @@ static void mainLoop(void)
                     bool arrived=move(object[0], object[1], &enemy1, marker_info, marker_num, object);
 			if(arrived)
 				base_health--;
+            if(base_health==0){
+                glTranslatef(0.0, -100, UpwardsScrollVelocity);
+                glutStrokeString(GLUT_STROKE_ROMAN, "Game Over");
+            }
                 }
             }
 
